@@ -50,12 +50,19 @@ def web():
     jsonData = json.loads(json.dumps(data.data))
 
 
-    html = "<tr><th>id</th><th>nombre</th><th>apellido</th><th>edad</th></tr>"
-
+    html = ""
+    
+    for value in jsonData:
+        html = ""
+        for key in value:
+            html += f"<th>{key}</th>"
+    html = f"<tr>{html}</tr>"
     
     
     for item in jsonData:
-        td = f"<tr><td>{item['id']}</td><td>{item['nombre']}</td><td>{item['apellido']}</td><td>{item['edad']}</td></tr>"
+        td = ""
+        for key in item:
+            td += f"<td>{item[key]}</td>"
         html = html + "<tr>"+td+"</tr>"
 
     html = f"<table border='1'>{html}</table>"
